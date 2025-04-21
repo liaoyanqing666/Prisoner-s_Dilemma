@@ -2,6 +2,12 @@ from approches import *
 import pandas as pd
 import numpy as np
 
+
+pd.set_option('display.max_rows', None)
+pd.set_option('display.max_columns', None)
+pd.options.display.float_format = '{:.2f}'.format
+
+
 def multiplayer(players, rounds, times=1):
     player_names = [cls.__name__ for cls in players]
     num_players = len(players)
@@ -63,6 +69,7 @@ if __name__ == "__main__":
 
     rounds = 200 # number of consecutive decision-making rounds conducted in a single experiment
     times = 100 # number of experiment
+
 
     result = multiplayer(players, rounds, times)
     print("Original result")
