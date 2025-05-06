@@ -1,14 +1,13 @@
 from strategies import *
 import pandas as pd
 import numpy as np
-
+from functools import partial
 
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
 pd.set_option('display.width', None)
 pd.set_option('display.max_colwidth', None)
 pd.options.display.float_format = '{:.2f}'.format
-
 
 def multiplayer(players, rounds, times=1):
     player_names = [cls.__name__ for cls in players]
@@ -64,24 +63,32 @@ def append_average_and_sort(df):
 
 
 if __name__ == "__main__":
-    # all_players = [
-    #     TitForTat,
-    #     TidemanAndChieruzzi,
-    #     Nydegger,
-    #     Grofman,
-    #     Shubik,
-    #     SteinAndRapoport,
-    #     Grudger,
-    #     Davis,
-    #     Graaskamp,
-    #     Downing,
-    #     Feld,
-    #     Joss,
-    #     Tullock,
-    #     Collaborator,
-    #     Betrayer,
-    #     Random,
-    # ]
+    """
+    all_players = [
+        TitForTat,
+        TidemanAndChieruzzi,
+        Nydegger,
+        Grofman,
+        Shubik,
+        SteinAndRapoport,
+        Grudger,
+        Davis,
+        Graaskamp,
+        Downing,
+        Feld,
+        Joss,
+        Tullock,
+        Collaborator,
+        Betrayer,
+        Random,
+    ]
+    """
+
+    # If initial parameters need to be passed, please use the partial method. Writing method reference:
+    #     Davis
+    #     ->
+    #     partial(Davis, rounds_to_cooperate=20)
+
 
     players = [
         TitForTat,
@@ -101,6 +108,9 @@ if __name__ == "__main__":
         Betrayer,
         Random,
     ]
+
+    # If initial parameters need to be passed, please use the partial method. Writing method reference:
+    partial(Davis, rounds_to_cooperate=20)
 
     rounds = 200 # number of consecutive decision-making rounds conducted in a single experiment
     times = 50 # number of experiment
